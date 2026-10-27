@@ -54,7 +54,7 @@ def test_transponer():
 
 
 test_es_matriz()
-#test_suma_matrices()
+test_suma_matrices()
 #test_suma_filas()
 #test_suma_diagonal()
 #test_transponer()

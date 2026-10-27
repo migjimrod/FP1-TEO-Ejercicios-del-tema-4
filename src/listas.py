@@ -137,8 +137,26 @@ def inserta_ordenado(lista_nombres: list[str], nombre: str) -> None:
     lista_nombres (list[str]): Lista de nombres ordenada por longitud.
     nombre (str): Nombre a insertar.
     """
-    # TODO: Implementa esta función
-    pass
+    # ejemplo de lista ordenada:
+    # ["Ana", "María", "Raquel", "Antonio", "Raimundo", "Miguel Ángel"]
+    # ejemplo de nombre a añadir: "Manolo"
+
+    # Primero hay que comprobar que la lista esté ordenada
+    for e1, e2 in zip(lista_nombres, lista_nombres[1:]): # Recorremos elementos consecutivos
+        if len(e1) > len(e2):
+            return None
+
+    # Aquí ya sabemos que la lista está ordenada
+    i = 0 
+    for elem in lista_nombres:
+        if len(elem) > len(nombre):
+            break
+        i += 1
+
+    lista_nombres.insert(i, nombre)
+
+    
+
 
 def busca_duplicados(lista: list) -> list:
     """
@@ -150,7 +168,25 @@ def busca_duplicados(lista: list) -> list:
     Devuelve:
     list: Lista con los elementos duplicados.
     """
-    # TODO: Implementa esta función:
-    # - usando count
-    # - usando slicing y sin usar count
-    pass
+    duplicados = []
+    for elem in lista:
+        if lista.count(elem) > 1 and elem not in duplicados:
+            duplicados.append(elem)
+    return duplicados
+
+def busca_duplicados_2(lista: list) -> list:
+    """
+    Busca y devuelve una lista con los elementos duplicados en la lista recibida.
+
+    Parámetros:
+    lista (list): Lista en la que buscar duplicados.
+
+    Devuelve:
+    list: Lista con los elementos duplicados.
+    """
+    # TODO: Para hacer en casa
+    # Versión con slicing
+    # El algoritmo es:
+    # - Recorro los elementos con sus índices
+    # - Para cada elemento, pregunto si está contenido en el resto de la lista
+    #  (usando slicing)
