@@ -13,8 +13,16 @@ def genera_aleatorios(n: int, minimo: int, maximo: int) -> list[int]:
     Devuelve:
     list[int]: Lista con n números enteros aleatorios.
     """
-    # TODO: Implementa esta función
-    pass
+    numeros = []
+    while len(numeros)<=n:
+        nuevo = random.radiant(minimo, maximo)
+        if len(numeros) == 0 or nuevo != numeros[-1]:
+            numeros.append(nuevo)
+    return numeros
+
+
+
+
 
 def intercala_listas(lista1: list, lista2: list) -> list:
     """
