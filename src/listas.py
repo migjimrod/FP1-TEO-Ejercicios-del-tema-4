@@ -14,8 +14,8 @@ def genera_aleatorios(n: int, minimo: int, maximo: int) -> list[int]:
     list[int]: Lista con n números enteros aleatorios.
     """
     numeros = []
-    while len(numeros)<=n:
-        nuevo = random.radiant(minimo, maximo)
+    while len(numeros)<n:
+        nuevo = random.randint(minimo, maximo)
         if len(numeros) == 0 or nuevo != numeros[-1]:
             numeros.append(nuevo)
     return numeros
@@ -35,8 +35,19 @@ def intercala_listas(lista1: list, lista2: list) -> list:
     Devuelve:
     list: Lista resultante de intercalar las dos listas.
     """
-    # TODO: Implementa esta función
-    pass
+    lista = []
+    for n1,n2 in zip(lista1,lista2):
+        lista.append(n1)
+        lista.append(n2)
+    if len(lista1)<len(lista2):
+        nueva_lista= lista2[len(lista1):]
+        lista.extend(nueva_lista)
+    elif len(lista2)<len(lista1):
+        nueva_lista= lista1[len(lista2):]
+        lista.extend(nueva_lista)
+    return lista
+
+
 
 def mezcla_ordenadas(lista1: list, lista2: list) -> list:
     """
@@ -49,8 +60,12 @@ def mezcla_ordenadas(lista1: list, lista2: list) -> list:
     Devuelve:
     list: Lista resultante de mezclar las dos listas ordenadas.
     """
-    # TODO: Implementa esta función
-    pass
+    lista1_ordenada = sorted(lista1)
+    lista2_ordenada = sorted(lista2)
+    nueva_lista_total = lista1_ordenada + lista2_ordenada
+    nueva_lista_total_ordenada = sorted(nueva_lista_total)
+    return nueva_lista_total_ordenada
+    
 
 def ordena_bubble_sort(lista: list) -> None:
     """
@@ -58,9 +73,17 @@ def ordena_bubble_sort(lista: list) -> None:
 
     Parámetros:
     lista (list[int]): Lista de números enteros a ordenar.
-    """    
-    # TODO: Implementa esta función
-    pass
+    """  
+    intercambio = True
+    while intercambio==True:
+        intercambio = False
+        for i in range(len(lista) - 1):
+            if lista[i] > lista[i+1]:
+                lista[i], lista[i+1] = lista[i+1], lista[i]
+                intercambio = True
+
+
+
 
 def inserta_ordenado(lista_nombres: list[str], nombre: str) -> None:
     """
@@ -71,8 +94,13 @@ def inserta_ordenado(lista_nombres: list[str], nombre: str) -> None:
     lista_nombres (list[str]): Lista de nombres ordenada por longitud.
     nombre (str): Nombre a insertar.
     """
-    # TODO: Implementa esta función
-    pass
+    
+
+
+
+
+
+
 
 def busca_duplicados(lista: list) -> list:
     """

@@ -163,8 +163,8 @@ def test_busca_duplicados():
     assert busca_duplicados(lista) == resultado_esperado
 
 # Descomenta las llamadas de los tests que quieras ejecutar
-test_genera_aleatorios()
-#test_intercala_listas()
+#test_genera_aleatorios()
+test_intercala_listas()
 #test_mezcla_ordenadas()
 #test_ordena_bubble_sort()
 #test_inserta_ordenado()
