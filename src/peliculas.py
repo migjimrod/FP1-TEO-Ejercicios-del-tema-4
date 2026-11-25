@@ -20,7 +20,6 @@ def lee_peliculas(ruta_fichero: str) -> list[Pelicula]:
         pelicula = []
         for linea in lector:
             fecha_estreno, titulo, director, genero, duracion, presupuesto, recaudacion, reparto = linea
-            # TODO: Crea una tupla de tipo Pelicula para cada iteración del bucle, rellenándola con los datos adecuados
             fecha_estreno = datetime.strptime(fecha_estreno, "%Y-%m-%d").date()
             genero = genero.split(",")
             duracion = int(duracion)
@@ -57,8 +56,14 @@ def son_todas_director_genero(peliculas: list[Pelicula], director: str, genero: 
     Devuelve:
     bool: True si todas las películas del director pertenecen al género, False en caso contrario.
     """
-    # TODO: Implementa esta función
-    pass
+    for c in peliculas:
+       if c.director == director:
+           if genero not in c.genero:
+               return False
+    return True
+
+        
+
 
 def construye_lista_titulos_actor(peliculas: list[Pelicula], actor: str) -> list[str]:
     """
@@ -69,8 +74,12 @@ def construye_lista_titulos_actor(peliculas: list[Pelicula], actor: str) -> list
     Devuelve:
     list[str]: Lista de títulos de películas en las que aparece el actor.
     """    
-    # TODO: Implementa esta función
-    pass
+    lista_actor = []
+    for c in peliculas:
+        if actor in c.reparto:
+            lista_actor.append(c.titulo)
+    return lista_actor
+
 
 def calcula_presupuesto_total_año(peliculas: list[Pelicula], año: int) -> int:
     """
@@ -81,8 +90,11 @@ def calcula_presupuesto_total_año(peliculas: list[Pelicula], año: int) -> int:
     Devuelve:
     int: Presupuesto total de las películas estrenadas en el año indicado.
     """
-    # TODO: Implementa esta función
-    pass
+    presupuesto_total = 0
+    for c in peliculas:
+        if c.fecha_estreno.year == año:
+            presupuesto_total += c.presupuesto
+    return presupuesto_total
 
 def encuentra_pelicula_mayor_recaudacion(peliculas: list[Pelicula], genero: str) -> Pelicula | None:
     """
@@ -93,9 +105,18 @@ def encuentra_pelicula_mayor_recaudacion(peliculas: list[Pelicula], genero: str)
     Devuelve:
     Pelicula | None: Película con mayor recaudación del género indicado, o None si no existe ninguna.
     """
-    # TODO: Implementa esta función
-    pass
+    pelicula_maxima = None
+    for c in peliculas:
+        if genero in c.genero:
+            if pelicula_maxima is None:
+                pelicula_maxima = c
+            elif c.recaudacion > pelicula_maxima.recaudacion:
+                pelicula_maxima = c
+    return pelicula_maxima
 
+    
+
+                
 
 
 
