@@ -1,5 +1,6 @@
 import csv
 from collections import namedtuple
+from datetime import date, datetime
 
 Pelicula = namedtuple('Pelicula', [
     "fecha_estreno",   # tipo date
@@ -16,11 +17,19 @@ def lee_peliculas(ruta_fichero: str) -> list[Pelicula]:
     with open(ruta_fichero, encoding='utf-8') as f:
         lector = csv.reader(f)
         next(lector) # Saltamos la cabecera
+        pelicula = []
         for linea in lector:
-            # TODO: Depura para observar qué hay en linea
-            # TODO: Modifica el for para obtener cada campo en una variable mediante unpacking
+            fecha_estreno, titulo, director, genero, duracion, presupuesto, recaudacion, reparto = linea
             # TODO: Crea una tupla de tipo Pelicula para cada iteración del bucle, rellenándola con los datos adecuados
-            pass
+            fecha_estreno = datetime.strptime(fecha_estreno, "%Y-%m-%d").date()
+            genero = genero.split(",")
+            duracion = int(duracion)
+            presupuesto = int(presupuesto)
+            recaudacion = int(recaudacion)
+            reparto = reparto.split(",")
+            añadir_pelicula = Pelicula(fecha_estreno,titulo, director,genero,duracion,presupuesto,recaudacion,reparto)
+            pelicula.append(añadir_pelicula)
+        return pelicula
     
 
 def existe_pelicula(peliculas: list[Pelicula], cadena_en_titulo: str) -> bool:
@@ -33,8 +42,10 @@ def existe_pelicula(peliculas: list[Pelicula], cadena_en_titulo: str) -> bool:
     bool: True si existe al menos una película cuyo título contiene la cadena, False en caso
     contrario.
     """
-    # TODO: Implementa esta función
-    pass
+    for c in peliculas:
+        if cadena_en_titulo in c.titulo:
+            return True
+    return False
 
 def son_todas_director_genero(peliculas: list[Pelicula], director: str, genero: str) -> bool:
     """
