@@ -8,8 +8,10 @@ def es_matriz(matriz: list[list[int | float]]) -> bool:
     Devuelve:
     bool: True si todas las filas tienen el mismo número de elementos.
     """
-    # TODO: Implementa esta función
-    pass
+    for fila in matriz:
+        if len(matriz[0]) != len(fila):
+            return False
+    return True
 
 
 def suma_matrices(
@@ -26,8 +28,24 @@ def suma_matrices(
     list[list[int | float]] | None: Matriz resultante, o None si las matrices
     no son válidas o tienen dimensiones distintas.
     """
-    # TODO: Implementa esta función
-    pass
+    if es_matriz(m1) and es_matriz(m2):
+        if len(m1)==len(m2)==0:
+            resultado_vacio = []
+            return resultado_vacio 
+        elif (len(m1) == len(m2)) and (len(m1[0])==len(m2[0])):
+            resultado = []
+            for i in range(len(m1)):
+                fila_temporal = []
+                for j in range(len(m2[0])):
+                    suma = m1[i][j] + m2[i][j]
+                    fila_temporal.append(suma)
+                resultado.append(fila_temporal)
+            return resultado
+        else: 
+            return None
+    else: 
+        return None
+
 
 
 def suma_filas(
@@ -43,10 +61,17 @@ def suma_filas(
     list[int | float] | None: Lista con la suma de cada fila, o None si la
     matriz no es válida.
     """
-    # TODO: Implementa esta función
-    pass
-
-
+    if es_matriz(matriz):
+        resultado = []
+        for i in range(len(matriz)):
+            suma = 0
+            for j in range(len(matriz[0])): 
+                suma += matriz[i][j] 
+            resultado.append(suma)
+        return resultado 
+    else:
+        return None      
+            
 def suma_diagonal(matriz: list[list[int | float]]) -> int | float | None:
     """
     Suma los elementos de la diagonal principal de una matriz cuadrada.
